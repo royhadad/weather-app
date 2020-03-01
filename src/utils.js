@@ -28,7 +28,11 @@ const getWeatherByGeoCode = (geoCode, callback) => {
             callback(res.body.error);
         } else {
             const dataForToday = res.body.daily.data[0];
-            callback(undefined, { summary: dataForToday.summary + ` it is currently ${res.body.currently.temperature} degrees out, there is a ${res.body.currently.precipProbability}% chance of rain.` });
+            callback(undefined, {
+                summary: dataForToday.summary + ` it is currently ${res.body.currently.temperature} degrees out, there is a ${res.body.currently.precipProbability}% chance of rain.<br/>
+                lowest temperature: ${dataForToday.temperatureLow}<br/>
+                highest temperature: ${dataForToday.temperatureHigh}`
+            });
         }
     });
 
